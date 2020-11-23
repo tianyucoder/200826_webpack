@@ -30,7 +30,20 @@ module.exports = {
 			{
         test: /\.less$/, //该loader要处理的文件
         use: [...baseCssLoader,'less-loader']
-			}
+			},
+			//配置解析样式中的图片
+			{
+        test: /\.(png|jpg|gif|bmp)$/,
+        use: [{
+					loader:'url-loader',
+					options:{
+						outputPath:'imgs', //配置图片加工后存放的位置
+						// publicPath:',/build/imgs' //配置图片引入时前缀路径
+						name:'[hash:5].[ext]', //配置生成图片的名字+后缀
+						limit:8 * 1024 //图片大小，小于8KB时，将图片转为base64编码
+					}
+				}]
+      }
     ]
 	},
 	//plugins中专门用于配置插件，插件必须经过实例化这一环节

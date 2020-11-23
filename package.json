@@ -19,10 +19,12 @@
   "homepage": "https://github.com/tianyucoder/200826_webpack#readme",
   "devDependencies": {
     "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "less": "^3.12.2",
     "less-loader": "^7.1.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   }
