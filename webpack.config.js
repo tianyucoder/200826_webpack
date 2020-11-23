@@ -48,6 +48,17 @@ module.exports = {
 			{
 				test: /\.(html)$/,
 				use: ['html-loader']
+			},
+			//配置解析字体文件
+			{
+        exclude: /\.(html|less|css|png|jpg|bmp|js|gif|json)$/,
+        use: [{
+					loader:'file-loader',
+					options:{
+						outputPath:'media', //配置图片加工后存放的位置
+						name:'[hash:5].[ext]', //配置生成图片的名字+后缀
+					}
+				}]
 			}
     ]
 	},
@@ -58,5 +69,10 @@ module.exports = {
 			//以指定文件为模板创建新的html(1. 结构和原来一样 2. 会自动引入打包的资源)
 			template:'./src/index.html' //模板的位置
 		})
-	]
+	],
+	devServer:{
+		port:5000,//开启服务器的端口号
+		open:true,//自动打开浏览器
+		hot:true
+	}
 };

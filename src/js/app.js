@@ -7,6 +7,7 @@ import school from './module3'
 import data from '../json/test.json'
 import '../css/demo.css'
 import '../css/demo.less'
+import '../css/iconfont.css'
 
 sum(1,2)
 sub(3,4)
