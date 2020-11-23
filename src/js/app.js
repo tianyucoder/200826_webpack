@@ -6,6 +6,7 @@ import {data as d,message} from './module2'
 import school from './module3'
 import data from '../json/test.json'
 import '../css/demo.css'
+import '../css/demo.less'
 
 sum(1,2)
 sub(3,4)

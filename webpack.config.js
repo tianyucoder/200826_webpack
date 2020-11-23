@@ -4,15 +4,19 @@
 */
 
 //引入Node中一个内置的path模块，专门用于解决路径问题
-var path = require('path');
+const {resolve} = require('path');
+//引入html-webpack-plugin，用于加工html文件
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+//css相关loader的配置
+const baseCssLoader = ['style-loader','css-loader']
 //使用CJS的模块化规范，暴露一个对象，该对象就是webpack的详细配置对象(规则)
 module.exports = {
   mode: 'development',//工作模式
   entry: './src/js/app.js', //入口
   output: { //出口(输出)
-    path: path.resolve(__dirname, 'build/js'), //输出文件的路径
-    filename: 'app.js' //输出文件的名字
+    path: resolve(__dirname, 'build'), //输出文件的路径
+    filename: 'js/app.js' //输出文件的名字
 	},
 	//module.rules中配置的一个一个的loader
 	module: {
@@ -20,12 +24,20 @@ module.exports = {
 			//配置解析css
       {
         test: /\.css$/, //该loader要处理的文件
-        use: [
-					'style-loader', //创建style标签，将样式资源插入，添加到head中生效
-					'css-loader' //将css文件变成commonjs模块加载js中，里面内容是样式字符串
-				]
+        use: [...baseCssLoader]
+			},
+			//配置解析less
+			{
+        test: /\.less$/, //该loader要处理的文件
+        use: [...baseCssLoader,'less-loader']
 			}
     ]
-	}
-	
+	},
+	//plugins中专门用于配置插件，插件必须经过实例化这一环节
+	plugins: [
+		//实例化HtmlWebpackPlugin
+		new HtmlWebpackPlugin({
+			template:'./src/index.html' //模板的位置
+		})
+	]
 };
