@@ -28,7 +28,7 @@ module.exports = {
 			},
 			//配置解析less
 			{
-        test: /\.less$/, //该loader要处理的文件
+        test: /\.less$/, //该loadesr要处理的文件
         use: [...baseCssLoader,'less-loader']
 			},
 			//配置解析样式中的图片
@@ -43,7 +43,12 @@ module.exports = {
 						limit:8 * 1024 //图片大小，小于8KB时，将图片转为base64编码
 					}
 				}]
-      }
+			},
+			//配置解析html中的图片
+			{
+				test: /\.(html)$/,
+				use: ['html-loader']
+			}
     ]
 	},
 	//plugins中专门用于配置插件，插件必须经过实例化这一环节
