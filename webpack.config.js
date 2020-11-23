@@ -37,6 +37,7 @@ module.exports = {
 	plugins: [
 		//实例化HtmlWebpackPlugin
 		new HtmlWebpackPlugin({
+			//以指定文件为模板创建新的html(1. 结构和原来一样 2. 会自动引入打包的资源)
 			template:'./src/index.html' //模板的位置
 		})
 	]
