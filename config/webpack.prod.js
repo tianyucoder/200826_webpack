@@ -9,6 +9,8 @@ const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //引入MiniCssExtractPlugin，用于提取css为单独文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//引入OptimizeCssAssetsPlugin，用于压缩css
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 //css相关loader的配置
 const baseCssLoader = [
@@ -76,6 +78,28 @@ module.exports = {
 						name:'[hash:5].[ext]', //配置生成图片的名字+后缀
 					}
 				}]
+			},
+			//配置js语法检查
+			{
+        // 对js进行语法检查
+        test: /\.js$/,
+        exclude: /node_modules/,
+        // 优先执行
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+					fix: true //若有问题自动修复，重要！！！！
+				}
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: "babel-loader",
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
 			}
     ]
 	},
@@ -89,6 +113,11 @@ module.exports = {
 		//实例化MiniCssExtractPlugin
 		new MiniCssExtractPlugin({
 			filename:'/css/index.css'
+		}),
+		new OptimizeCssAssetsPlugin({
+			cssProcessorPluginOptions: {
+				preset: ['default', { discardComments: { removeAll: true } }],
+			},
 		})
 	]
 };
