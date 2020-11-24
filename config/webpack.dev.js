@@ -73,6 +73,6 @@ module.exports = {
 	devServer:{
 		port:5000,//开启服务器的端口号
 		open:true,//自动打开浏览器
-		hot:true
+		hot:true//开启模块热更新(热模替换)
 	}
 };

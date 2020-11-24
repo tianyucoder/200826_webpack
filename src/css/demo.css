@@ -1,5 +1,6 @@
 .title{
-	background-color: pink;
+	background-color: black;
 	color: orange;
 	font-size: 40px;
+	display: flex;
 }
